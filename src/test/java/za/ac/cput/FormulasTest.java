@@ -1,9 +1,6 @@
 package za.ac.cput;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class FormulasTest {
 
@@ -19,20 +16,33 @@ public class FormulasTest {
     }
 
     @Test
-    public void perimeter() {
-        int result = formulas.perimeter(1, 1);
-        Assert.assertEquals(4 ,result);
-    }
-
-    @Test
-    public void area() {
-        int result = formulas.area(1, 1);
-        Assert.assertEquals(1, result);
-    }
-
-    @Test
-    public void volume() {
+    public void volumeEquality() {
         int result = formulas.volume(1, 1, 1);
         Assert.assertEquals(1, result);
     }
+
+    @Test
+    public void volumeIdentity() {
+        int result = formulas.volume(1, 1, 1);
+        Assert.assertSame(1, result);
+    }
+
+    @Test
+    public void volumeFail() {
+        Assert.fail("This test serves as a failure test");
+    }
+
+    @Test (timeout = 200)
+    public void volumeTimeout() {
+        int result = formulas.volume(1, 1, 1);
+        Assert.assertSame(1, result);
+    }
+
+    @Ignore
+    @Test
+    public void volumeDisable() {
+        int result = formulas.volume(1, 1, 1);
+        Assert.assertEquals(1, result);
+    }
+
 }
